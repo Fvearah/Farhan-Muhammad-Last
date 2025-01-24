@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal P4 - Pelatihan dan Pengembangan Pendidikan">
+    <meta name="keywords" content="P4, pelatihan, pendidikan, pengembangan, program, konten">
+    <meta name="author" content="Portal P4">
+    <title>Portal P4</title>
+    <link rel="stylesheet" href="interaksi.css">
+    
+    <style>
+        /* Gaya global */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            line-height: 1.6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Memastikan footer tetap di bawah */
+        }
+
+        h1, h2, h3 {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50;
+            padding: 20px 10px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Kotak dengan border */
+        .boxed-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .boxed-section:hover {
+            transform: scale(1.02);
+        }
+
+        /* Program Pelatihan */
+        .program-list {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .program {
+            background: #ecf0f1;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            flex-basis: 45%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .program:hover {
+            transform: scale(1.05);
+        }
+
+        .program h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .program p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        .cta-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .cta-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* FAQ */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .faq-item p {
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+
+        /* Kontak */
+        .contact-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .contact-location iframe {
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 300px;
+        }
+
+        /* Formulir Kontak */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input,
+        form textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            padding: 20px 10px;
+            color: white;
+            text-align: center;
+            margin-top: auto; /* Memastikan footer tetap di bawah */
+        }
+
+        footer .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.1em;
+        }
+
+        footer .footer-links a:hover {
+            color: #3498db;
+        }
+
+        /* Media Queries for Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+                background-color: #2c3e50;
+                color: white;
+                font-size: 30px;
+                border: none;
+                padding: 10px;
+            }
+
+            .program-list {
+                flex-direction: column;
+            }
+
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+
+            <div class="logo">
+                <img src="https://www.p4juks.com/images/logo_p4.png" alt="Portal P4 Logo" style="width: 150px; height: auto;">
+            </div>
+        </div>
+        <nav>
+            
+            <div class="nav-menu" id="navMenu">
+            </li><a href="#beranda" data-target="beranda">Beranda</a></li>
+        </li><a href="#sejarah" data-target="sejarah">Sejarah</a></li>
+                <div class="dropdown">
+                </li><a href="#profil" data-target="profil" id="profilBtn">Profil</a></li>
+                    <div class="dropdown-content" id="dropdownContent">
+                    </li> <a href="#profil-detail" data-target="profil-detail">Profil</a></li>
+                </li>  <a href="#struktur" data-target="struktur">Struktur</a></li>
+            </li><a href="#visi-misi" data-target="visi-misi">Visi & Misi</a> </li><!-- Tautan Visi & Misi -->
+                    </div>
+                </div>
+            </li><a href="#berita" data-target="berita">Berita</a></li>
+        </li><a href="#kontak" data-target="kontak">Kontak</a></li>
+    </li><a href="#faq" data-target="faq">FAQ</a></li>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">&#9776;</button>
+        </nav>
+        
+    </header>
+
+    <!-- Beranda -->
+    <section id="beranda" class="section-header tab-content">
+        <div class="banner">
+            <h2>Selamat datang di Portal P4!</h2>
+            <div class="scrolling-text">
+                <p>Selamat Datang Di Sistem Informasi Pusat Pelatihan Dan Pengembangan Pendidikan Jakarta Utara Dan Kepulauan Seribu</p>
+            </div>
+            <p>Portal P4 bertujuan untuk memberikan pelatihan berkualitas yang mendukung perkembangan pendidikan di Indonesia.</p>
+            <a href="#program" class="cta-button">Lihat Program Pelatihan</a>
+        </div>
+    </section>
+
+   <!-- Sejarah -->
+<section id="sejarah" class="tab-content" style="display: none;">
+    <div class="boxed-section">
+        <h2>Sejarah Pusat Pelatihan Dan Pengembangan Pendidikan Jakarta Utara Dan Kepulauan Seribu (P4JUKS)</h2>
+        <p style="font-size: 1.1em; line-height: 1.8;">Pusat Pelatihan dan Pengembangan Pendidikan Jakarta Utara dan Kepulauan Seribu (P4JUKS) memiliki sejarah panjang yang dimulai pada tahun 1973. Berikut adalah beberapa tonggak penting dalam perjalanan kami:</p>
+        
+        <h3 style="margin-top: 20px;">Tahun 1973 - 1975: Awal Mula</h3>
+        <p>Dibangun pada tahun 1973 dan diresmikan pada tanggal 22 Mei 1975 oleh Presiden Republik Indonesia, Bapak Suharto, dengan nama Pusat Latihan Pendidikan Teknik (PLPT). PLPT bertugas untuk melayani pelatihan dan praktik siswa SMK kelompok Teknologi dan Industri di wilayah DKI Jakarta.</p>
+        
+        <h3>Tahun 1978 - 2002: Perubahan Nama</h3>
+        <p>Pada tahun 1978, nama PLPT diubah menjadi BLPT (Balai Latihan Pendidikan Teknik) dan berfungsi hingga tahun 2002. BLPT melaksanakan pelatihan dan praktik siswa SMK di wilayah DKI Jakarta yang belum memiliki fasilitas praktik.</p>
+        
+        <h3>Tahun 2002 - 2010: Transformasi</h3>
+        <p>Dengan SK Gubernur Provinsi DKI Jakarta Nomor 118 Tahun 2002, nama diubah menjadi Balai Pelatihan Pendidikan Kejuruan (BPPK) Pulogadung. BPPK bertugas melaksanakan pelatihan dan praktik kejuruan sesuai kurikulum yang berlaku.</p>
+        
+        <h3>Tahun 2010 - 2015: Pusat Pelatihan Pendidikan Kejuruan</h3>
+        <p>Pada tahun 2010, berdasarkan Peraturan Gubernur Provinsi DKI Jakarta Nomor 55 Tahun 2010, nama diubah menjadi Pusat Pelatihan Pendidikan Kejuruan (Puslatdikjur) Pulogadung Jakarta.</p>
+        
+        <h3>Tahun 2015 - 2022: Pengembangan Kompetensi</h3>
+        <p>Pada tahun 2015, berubah nama menjadi Pusat Pelatihan dan Pengembangan Pendidikan (P2KGK) Jakarta Utara dan Kepulauan Seribu. Pada tahun 2016, sesuai Peraturan Gubernur Provinsi DKI Jakarta Nomor 369 Tahun 2016, nama diubah menjadi Pusat Pengembangan Kompetensi Pendidik dan Tenaga Kependidikan (P4).</p>
+        
+        <h3>Tahun 2022: Nama Terakhir</h3>
+        <p>Pada tahun 2022, berubah nama menjadi Pusat Pelatihan dan Pengembangan Pendidikan Jakarta Utara dan Kepulauan Seribu, dengan luas tanah ± 26.010 M² dan luas bangunan 8.400 M² yang terletak di Jalan Rawaterate I No. 2 Kawasan Industri Pulogadung Jakarta, Cakung, Jakarta Timur.</p>
+        
+        <h3 style="margin-top: 20px;">Visi Kami</h3>
+        <p>Menjadi pusat pelatihan yang unggul dalam pengembangan pendidikan di Indonesia.</p>
+    </div>
+    
+</section>
+<!-- Profil -->
+<section id="profil" class="tab-content" style="display: none;">
+    <div class="boxed-section">
+        <h2>Profil Kepala Pusat</h2>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+            <div style="text-align: center;">
+                <img src="https://www.p4juks.com/images/dr_saryono.png" alt="Dr. Saryono" style="width: 150px; border-radius: 8px;">
+                <h3>Dr. Saryono, S.Pd., M.Psi.T</h3>
+            </div>
+        </div>
+        <p>
+            Dr. Saryono, S.Pd., M.Psi.T, lahir pada 21 April 1968 di Jakarta, merupakan anak ketiga dari pasangan Bapak Purwosuwito dan Ibu Sayem. Ia menikah dengan Herwati Retno Kuntari dan dikaruniai tiga anak: Fathin Mulyawan Abdul Barri, Hani Amila Ma'rufi, dan Alamanda Zuyyina Yasmin.
+        </p>
+        <p>
+            Pendidikan dasarnya ditempuh di SD Negeri 09 Pagi Karet Tengsin Jakarta Pusat, lulus tahun 1981. Ia melanjutkan ke SMP Negeri 38 Jakarta (lulus 1984) dan SMA Negeri 35 Jakarta Program Studi A1 (Ilmu Fisika, lulus 1987). Setelah lulus SMA, ia melanjutkan studi di FMIPA Universitas Indonesia (UI) jurusan D3 Matematika melalui jalur Penelusuran Minat Bakat dan Kemampuan (PMDK), lulus tahun 1992.
+        </p>
+        <p>
+            Berbekal ijazah Diploma dan Akta 3 kependidikan, ia mengikuti ikatan dinas sebagai PNS guru matematika di SMA Negeri 35, almamaternya. Ia mengajar matematika hingga tahun 2013 dan menjabat sebagai Wakil Kepala Sekolah bidang kesiswaan selama dua periode. Pada Maret 2013, ia dilantik sebagai Kepala SMA Negeri 112 Jakarta setelah lulus lelang jabatan kepala sekolah.
+        </p>
+        <p>
+            Ia melanjutkan studi S1 Pendidikan Matematika di Universitas Terbuka, lulus tahun 1996. Minat belajar dan karakter kerja kerasnya membawanya ke studi Pasca Sarjana di Fakultas Psikologi Universitas Indonesia, yang diselesaikannya tahun 2003 dengan gelar M.Psi.T. Ia juga mengajar mata kuliah Konstruksi Alat Ukur di Program Pasca Sarjana Universitas Indonesia dari tahun 2003 hingga 2009.
+        </p>
+        <p>
+            Gelar Doktor diperolehnya setelah menyelesaikan disertasi di Universitas Negeri Jakarta (UNJ) pada tahun 2012 dengan program Manajemen Pendidikan. Selain mengajar, ia juga berkarir di berbagai perguruan tinggi swasta, termasuk sebagai dosen luar biasa di Pasca Sarjana Universitas Nusamandiri dan Universitas Muhammadiyah Tangerang.
+        </p>
+        <p>
+            Karier kepala sekolahnya dimulai di SMA Negeri 112 (2013-2014), kemudian di SMA Negeri 63 Jakarta (2014-2017), dan terakhir di SMA Negeri 78 pada tahun 2018. Pada akhir tahun 2018, ia menjabat sebagai Kasi Kurikulum SMP dan SMA Dinas Pendidikan Provinsi DKI Jakarta. Pada Februari 2019, ia dipindahtugaskan ke Suku Dinas Pendidikan Wilayah 2 Jakarta Pusat sebagai Kasi Pendidikan Menengah. Akhirnya, pada 4 April 2024, ia dilantik sebagai Kepala Pusat Pelatihan dan Pengembangan Pendidikan Jakarta Utara dan Kepulauan Seribu.
+        </p>
+
+        <h2>Kasubbag Tata Usaha</h2>
+        <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+            <div style="text-align: center;">
+                <img src="https://www.p4juks.com/images/kasubbag.png" alt="Horale Tua Simanullang" style="width: 150px; border-radius: 8px;">
+                <h3>Horale Tua Simanullang</h3>
+            </div>
+        </div>
+        <p>
+            Horale Tua Simanullang lahir pada 15 Mei 1969 di Polling, Sumatra Utara, sebagai anak keempat dari delapan bersaudara pasangan Pinda Manullang dan Sinta Simamora. Ia menikah dengan Naeva Mutiara Situmeang, A.Md.Gz, dan dikaruniai tiga anak: Letda Inf TNI AD Michael F.H Manullang, Serka TNI AD (Kowad) Yolanda Avioneta Juliat Manullang, dan Joe Artlen Einsten Manullang, pelajar kelas 9 SMP Negeri 193 Jakarta.
+        </p>
+        <p>
+            Pendidikan dasarnya ditempuh di SD 02 Buluduri (lulus 1982), SMP GKPS Teladan Medan (lulus 1986), dan SMA Negeri 13 Medan (lulus 1989). Ia melanjutkan studi di Universitas Sumatra Utara (USU) Fakultas MIPA D3 Kimia melalui program beasiswa ikatan dinas (lulus 1992), meraih sarjana pendidikan di Universitas Tadulako (UNTAD) Sulawesi Tengah (lulus 1996), dan lulus Magister Manajemen dari LPMI Jakarta (lulus 2009). Saat ini, ia sedang mengikuti program pasca sarjana (S3) Manajemen Pendidikan di Universitas Negeri Jakarta (UNJ).
+        </p>
+        <p>
+            Pengalaman kerjanya dimulai sebagai PNS guru di SMA Advent Palu, Sulawesi Tengah. Pada tahun 2001, ia mengajar di SMA Negeri 89 Jakarta dan menjadi tentor di lembaga bimbingan belajar Primagama hingga tahun 2010. Ia juga penulis buku pelajaran Kimia SMA hingga tahun 2013.
+        </p>
+        <p>
+            Pada tahun 2013, ia diangkat sebagai Kepala Sekolah SMA Negeri 93 Jakarta, kemudian di SMA Negeri 113 Jakarta (2015), SMA Negeri 39 Jakarta (2015-2018), dan terakhir di SMA Negeri 61 Jakarta (2018-2021). Pada tahun 2021, ia menjadi tenaga struktural di Dinas Pendidikan Provinsi DKI Jakarta sebagai Kasi PDPK bidang SMP dan SMA, dan pada tahun 2022 menjadi subkor PDPK bidang SMP dan SMA. Pada 4 April 2024, ia dilantik sebagai pejabat pengawas kepala subbagian tata usaha pusat penelitian dan pengembangan pendidikan kota administrasi Jakarta Utara dan kabupaten administrasi Kepulauan Seribu.
+        </p>
+    </div>
+</section>
+
+    <!-- Tentang Kami -->
+    <section id="tentang" class="tab-content" style="display: none;">
+        <div class="boxed-section">
+            <h2>Tentang Kami</h2>
+            <h3>Sejarah P4</h3>
+            <p>P4 didirikan pada tahun 2010 dengan tujuan untuk meningkatkan kualitas pendidikan di Indonesia melalui pelatihan berkualitas.</p>
+        </div>
+    </section>
+
+    <!-- Program -->
+    <section id="program" class="tab-content" style="display: none;">
+        <div class="boxed-section">
+            <h2>Program Pelatihan</h2>
+            <div class="program-list">
+                <div class="program">
+                    <h3>Pelatihan A</h3>
+                    <p>Pelatihan untuk meningkatkan keterampilan digital.</p>
+                    <a href="#" class="cta-button">Daftar Sekarang</a>
+                </div>
+                <div class="program">
+                    <h3>Pelatihan B</h3>
+                    <p>Pelatihan kepemimpinan untuk manajer.</p>
+                    <a href="#" class="cta-button">Daftar Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="tab-content" style="display: none;">
+        <h2>FAQ (Frequently Asked Questions)</h2>
+        <p>Berikut adalah beberapa pertanyaan yang sering diajukan mengenai layanan kami. Jika Anda tidak menemukan jawaban yang Anda cari, jangan ragu untuk menghubungi kami.</p>
+        <div class="faq-item">
+            <h3>Apa itu Portal P4?</h3>
+            <p>Portal P4 adalah pusat pelatihan yang didedikasikan untuk pengembangan kualitas pendidikan di Indonesia melalui program pelatihan yang berkualitas.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Bagaimana cara mendaftar untuk pelatihan?</h3>
+            <p>Untuk mendaftar pelatihan, cukup kunjungi halaman Program Pelatihan dan pilih pelatihan yang ingin Anda ikuti, lalu klik "Daftar Sekarang".</p>
+        </div>
+        <div class="faq-item">
+            <h3>Apakah ada biaya untuk mengikuti pelatihan?</h3>
+            <p>Biaya pelatihan bervariasi tergantung pada program yang dipilih. Silakan cek detail pelatihan untuk informasi lebih lanjut.</p>
+        </div>
+    </section>
+
+   <!-- Visi & Misi -->
+<section id="visi-misi" class="tab-content" style="display: none;">
+    <div class="boxed-section">
+        <h2 style="text-align: center;">VISI & MISI</h2>
+        <h3 style="text-align: center;">PUSAT PELATIHAN DAN PENGEMBANGAN PENDIDIKAN JAKARTA UTARA DAN KEPULAUAN SERIBU</h3>
+        
+       
+            <img src="assets/visi_misi.jpeg" alt="Visi dan Misi" style="width: 100%; border-radius: 8px; margin-top: 150px;">
+        </ul>
+    </div>
+</section>
+
+       </a>
+      </div>
+     </div>
+    </div>
+   </body>
+    <!-- Contact Us -->
+    <section id="kontak" class="tab-content" style="display: none;">
+        <div class="boxed-section">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need further information, please fill out the form below:</p>
+            <form action="#" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <h3>Location:</h3>
+                <p>Jl. Rw. Terate II No.18, Jatinegara, Cakung, East Jakarta City, Jakarta 13930</p>
+                <h3>Phone:</h3>
+                <p>(021) 123-4567</p>
+                <h3>Email:</h3>
+                <p>info@portalp4.com</p>
+            </div>
+            <div class="contact-location">
+                <h3>Our Location:</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.123456789012!2d106.845123!3d-6.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1234567890%3A0x1234567890abcdef!2sPortal%20P4!5e0!3m2!1sen!2sid!4v1234567890123" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Portal P4 - Semua Hak Dilindungi</p>
+            <div class="footer-links">
+                <a href="#tentang">Tentang Kami</a>
+                <a href="#kontak">Kontak</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu Toggle
+            const menuToggle = document.getElementById("menuToggle");
+            const navMenu = document.getElementById("navMenu");
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Fungsi untuk menampilkan section yang sesuai
+            function showSection(sectionId) {
+                const tabContents = document.querySelectorAll('.tab-content');
+                tabContents.forEach(function(content) {
+                    content.style.display = 'none'; // Sembunyikan semua section
+                });
+                const activeSection = document.getElementById(sectionId);
+                if (activeSection) {
+                    activeSection.style.display = 'block'; // Tampilkan section yang dipilih
+                }
+            }
+
+            // Event listener untuk tautan navigasi
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Mencegah perilaku default tautan
+                    const targetId = this.getAttribute('href').substring(1); // Ambil ID dari href
+                    showSection(targetId); // Tampilkan section yang sesuai
+                });
+            });
+
+            // Tampilkan section beranda secara default saat halaman dimuat
+            showSection('beranda');
+        });
+    </script>
+</body>
+</html>
