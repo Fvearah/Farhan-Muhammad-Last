@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault(); // Mencegah perilaku default tautan
 
         // Sembunyikan semua tab-content
-        const tabContents = document.querySelectorAll('.tab-content');
+        const tabContents = document.querySelectorAll('.tab-content');rooooooooooorrr
         tabContents.forEach(function(content) {
             content.style.display = 'none';
         });
